@@ -14,3 +14,4 @@
 -   https://github.com/okta/okta-sdk-nodejs#get-a-user
 -   https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-groups-claim-org-as/
 -   https://developer.okta.com/docs/reference/api/oidc/#response-example-error-8
+-   https://levelup.gitconnected.com/building-your-graphql-api-with-node-and-mongodb-799a2b9ae0b4

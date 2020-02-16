@@ -7,6 +7,10 @@ const director_attributes = {
         type: String,
         required: true,
         unique: false
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 };
 
