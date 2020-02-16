@@ -17,5 +17,8 @@ COPY .env.docker /usr/src/app/.env
 # Install dependecies
 RUN npm install
 
+# Build TS
+RUN npm build
+
 # Serve the app
 CMD ["npm", "start"]

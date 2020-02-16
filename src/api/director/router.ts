@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as controller from "./director.controller";
+import { requireAuthenticated } from "../middleware/authorization";
 
 // // // //
 
@@ -7,7 +8,7 @@ import * as controller from "./director.controller";
 export const router: Router = Router();
 
 // All routes require authentication
-// router.use(requireAuthenticated);
+router.use(requireAuthenticated);
 
 // GET /directors
 router.get("/", controller.list);

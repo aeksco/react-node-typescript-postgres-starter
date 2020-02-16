@@ -9,6 +9,9 @@ export async function list(req: Request, res: Response, next: NextFunction) {
     // Gets pagination variables for query
     const { page, per_page, offset } = getPaginationParams(req);
 
+    // @ts-ignore
+    console.log(req.user);
+
     // NOTE - the `countDocuments` operation is another call to MongoDB
     // This can be potentially expensive, you may want to remove it
     // It's currently included so pagination functions correctly on the front-end
