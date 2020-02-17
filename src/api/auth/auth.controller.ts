@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { client as oktaClient } from "../../lib/okta";
+import { client as oktaClient, auth as oktaAuth } from "../../lib/okta";
 // import User from "../user/user.model";
 
 // // // //
@@ -70,7 +70,41 @@ export function login(req: Request, res: Response) {
 
 // POST /api/auth/forgot_password
 export function forgot_password(req: Request, res: Response) {
-    return res.status(200).json({ success: true });
+    // return res.status(200).json({ success: true });
+    console.log(req.body.email);
+
+    // Pulls username from req.body.email
+    const username = req.body.email || null;
+
+    // Return 400 if username is falsey
+    if (!username) {
+        return res.status(400).json({ error: "No email provided" });
+    }
+
+    // TODO - handle missing req.body.email
+    oktaAuth
+        .forgotPassword({
+            username,
+            factorType: "EMAIL"
+        })
+        .then(function(transaction: any) {
+            console.log("TRANSACTION???");
+            console.log(JSON.stringify(transaction, null, 4));
+
+            console.log(Object.keys(transaction));
+
+            return res.json({ success: true });
+        })
+        .then(function(transaction: any) {
+            if (transaction.status === "SUCCESS") {
+                oktaAuth.session.setCookieAndRedirect(transaction.sessionToken);
+            } else {
+                throw "We cannot handle the " + transaction.status + " status";
+            }
+        })
+        .fail(function(err: any) {
+            console.error(err);
+        });
 }
 
 // // // //

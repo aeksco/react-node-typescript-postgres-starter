@@ -4,6 +4,9 @@ import * as okta from "@okta/okta-sdk-nodejs";
 // NOTE - we add ts-ignore here beacuse the `@okta/jwt-verifier` doesn't have a types package
 // @ts-ignore
 import * as OktaJwtVerifier from "@okta/jwt-verifier";
+// NOTE - we add ts-ignore here beacuse the `@okta/jwt-verifier` doesn't have a types package
+// @ts-ignore
+import * as OktaAuth from "@okta/okta-auth-js";
 
 // // // /
 
@@ -32,4 +35,8 @@ export const jwtVerifier = new OktaJwtVerifier({
         // "groups.includes": ["Everyone"],
         cid: OKTA_CLIENT_ID
     }
+});
+
+export const auth = new OktaAuth({
+    issuer: `${OKTA_ORG_URL}/oauth2/default`
 });
