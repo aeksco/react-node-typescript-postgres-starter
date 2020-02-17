@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLSchema } from "graphql";
 import {
     queryFields as directorQueryFields,
     mutationFields as directorMutationFields
-} from "./api/director/director.graphql";
+} from "./director/director.graphql";
 
 // // // //
 

@@ -2,10 +2,10 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as morgan from "morgan";
-import * as graphqlHTTP from "express-graphql";
-import schema from "./schema";
-import { requireAuthenticated } from "./api/middleware/authorization";
 import { router } from "./routes";
+import * as graphqlHTTP from "express-graphql";
+import schema from "./api/schema";
+import { requireAuthenticated } from "./api/middleware/authorization";
 
 // // // //
 
@@ -22,9 +22,10 @@ app.use(cookieParser());
 // print the request log on console
 app.use(morgan("dev"));
 
-// Boostrap API routes - scopes all routes under /api
+// Boostrap REST API routes - scopes all routes under /api
 app.use("/api", router);
 
+// Setup GraphQL endpoints
 app.use(
     "/graphql",
     requireAuthenticated,
